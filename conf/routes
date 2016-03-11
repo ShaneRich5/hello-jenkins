@@ -1,0 +1,46 @@
+# Routes
+# This file defines all application routes (Higher priority routes first)
+# ~~~~
+
+# Home page
+GET     /                           controllers.Application.index
+
+### API
+
+# ...
+
+### Unprotected API (for testing)
+
+GET     /api/unprotected/tenant             controllers.api.TenantController.getAll
+POST    /api/unprotected/tenant             controllers.api.TenantController.create
+GET     /api/unprotected/tenant/id/:id      controllers.api.TenantController.getById(id: java.util.UUID)
+PUT     /api/unprotected/tenant             controllers.api.TenantController.update
+DELETE  /api/unprotected/tenant/id/:id      controllers.api.TenantController.delete(id: java.util.UUID)
+
+### API
+
+GET     /api/v0/child             controllers.api.ChildController.getAll
+POST    /api/v0/child             controllers.api.ChildController.create
+GET     /api/v0/child/id/:id      controllers.api.ChildController.getById(id: java.util.UUID)
+PUT     /api/v0/child             controllers.api.ChildController.update
+DELETE  /api/v0/child/id/:id      controllers.api.ChildController.delete(id: java.util.UUID)
+
+GET     /api/v0/crew             controllers.api.CrewController.getAll
+POST    /api/v0/crew             controllers.api.CrewController.create
+GET     /api/v0/crew/id/:id      controllers.api.CrewController.getById(id: java.util.UUID)
+PUT     /api/v0/crew             controllers.api.CrewController.update
+DELETE  /api/v0/crew/id/:id      controllers.api.CrewController.delete(id: java.util.UUID)
+
+### Authentication
+
+POST    /api/v0/auth/signUp                  controllers.authentication.SignUpController.signUp
+POST    /api/v0/auth/cookie/signIn           controllers.authentication.CookieCredentialsAuthController.authenticate
+GET     /api/v0/auth/cookie/test             controllers.authentication.CookieCredentialsTestController.index
+
+POST    /api/v0/auth/jwt/signIn           controllers.authentication.JWTCredentialsAuthController.authenticate
+GET     /api/v0/auth/jwt/test             controllers.authentication.JWTCredentialsTestController.index
+
+
+# Map static resources from the /public folder to the /assets URL path
+GET         /assets/*file                    controllers.Assets.at(path="/public", file)
+GET         /webjars/*file                   controllers.WebJarAssets.at(file)
